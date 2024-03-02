@@ -12,7 +12,7 @@ const displayCardUser = (result) => {
         const discussCardContainer = document.getElementById('discuss-card-container');
         const newCard = document.createElement('div');
         newCard.innerHTML = `
-        <div class="flex justify-event mr-10 gap-5 border rounded-2xl p-5 mb-5 w-4/5">
+        <div class="flex justify-event lg:mr-10 gap-5 border rounded-2xl p-5 mb-5 lg:w-4/5">
             <div> 
                 <img class="w-32 rounded-2xl" src="${item.image}" alt="">
             </div>
@@ -48,7 +48,7 @@ const displayCardUser = (result) => {
     });
 }
 
-
+// Views Show Box
 let count = 0;
 const detailsViews = (item,views) =>{
     // console.log(item,views)
@@ -71,4 +71,50 @@ const detailsViews = (item,views) =>{
 }
 
 
+const latestDataLoad = async() =>{
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/latest-posts`)
+    const data = await res.json()
+    // console.log(data)
+    latestPostData(data)
+}
+
+const latestPostData = (result) =>{
+    result.forEach(item =>{
+        // console.log(item);
+        const latestCardContainer = document.getElementById('latest-card-container');
+        const cardNew = document.createElement('div');
+        cardNew.classList = `card card-compact lg:w-96 bg-base-100 shadow-xl`
+        cardNew.innerHTML = `
+        <figure>
+        <img src="${item.profile_image}" alt="Shoes" />
+        </figure>
+            <div class="card-body">
+                        <p>
+                            <i class="fa-regular fa-calendar"></i>
+                            <span class="text-[#b8b3b3]">${item.author.posted_date}</span>
+                        </p>
+                        <h2 class="text-[20px] font-bold fonts-mulish">${item.title}</h2>
+                        <p class="fonts-inter">${item.description}</p>
+                <div class="flex gap-3">
+                    <div>
+                        <img class="w-20 rounded-2xl" src="${item.cover_image}" alt="">
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="text-[18px] font-semibold">${item.author.name}</h4>
+                        <p class="text-[15px]">Unknown</p>
+                    </div>
+                </div>
+            </div>
+        `
+        latestCardContainer.appendChild(cardNew)
+    })
+}
+
+
+const searchAllPost = () =>{
+    const res = await fetch(``)
+}
+
+
 dataLoad()
+latestDataLoad()
