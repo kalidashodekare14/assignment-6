@@ -49,9 +49,25 @@ const displayCardUser = (result) => {
 }
 
 
-
+let count = 0;
 const detailsViews = (item,views) =>{
     // console.log(item,views)
+    count++
+    document.getElementById('post-count').innerText = count
+   
+    const viewsShowContainer = document.getElementById('view-show-container');
+    const div = document.createElement('div');
+    div.classList = `my-5`
+    div.innerHTML = `
+    <div class="flex justify-between bg-white rounded-lg p-5">
+        <h2 class="fonts-mulish font-semibold">${item}</h2>
+        <div class="flex items-center gap-3">
+            <i class="fa-regular fa-eye"></i>
+            <span class="text-[#747488]">${views}</span>
+        </div>
+    </div>
+    `
+    viewsShowContainer.appendChild(div);
 }
 
 
