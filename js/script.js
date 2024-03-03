@@ -1,5 +1,6 @@
 const discussCardContainer = document.getElementById('discuss-card-container');
 let selectCategories = 'Comedy'
+let title = '';
 
 
 const dataLoad = async (categoryName) => {
@@ -56,7 +57,7 @@ const displayCardUser = (result) => {
                             <span>${item.posted_time}</span>
                         </h2>
                     </div>
-                    <button onclick="detailsViews('${item.title}', ${item.view_count})" class="px-3 rounded-lg text-white bg-[#10B981]"><i
+                    <button onclick="detailsViews('${item.title.replace("'", "\\'")}', ${item.view_count})" class="px-3 rounded-lg text-white bg-[#10B981]"><i
                             class="fa-regular fa-envelope-open"></i></button>
                 </div>
             </div>
