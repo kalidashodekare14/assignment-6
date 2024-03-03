@@ -1,5 +1,10 @@
-const dataLoad = async () => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts`)
+const discussCardContainer = document.getElementById('discuss-card-container');
+let selectCategories = 'Comedy'
+
+
+const dataLoad = async (categoryName) => {
+    selectCategories = categoryName
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`)
     const data = await res.json()
     const result = data.posts
     // console.log(result);
@@ -8,8 +13,8 @@ const dataLoad = async () => {
 
 const displayCardUser = (result) => {
     // console.log(result)
+    discussCardContainer.innerHTML = ''
     result.forEach(item => {
-        const discussCardContainer = document.getElementById('discuss-card-container');
         const newCard = document.createElement('div');
         newCard.innerHTML = `
         <div class="flex justify-event lg:mr-10 gap-5 border rounded-2xl p-5 mb-5 lg:w-4/5">
@@ -111,10 +116,19 @@ const latestPostData = (result) =>{
 }
 
 
-const searchAllPost = () =>{
-    const res = await fetch(``)
+const searchHandler = () =>{
+    const value = document.getElementById('input-field').value;
+    if(value){
+        dataLoad(value)
+        console.log(value);
+    }
+    else{
+        alert('Please Enter Your Valid ')
+    }
+
 }
 
 
-dataLoad()
+
+dataLoad(selectCategories)
 latestDataLoad()
