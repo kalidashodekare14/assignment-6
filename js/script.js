@@ -1,6 +1,5 @@
 const discussCardContainer = document.getElementById('discuss-card-container');
 let selectCategories = 'Comedy'
-let title = '';
 
 
 const dataLoad = async (categoryName) => {
