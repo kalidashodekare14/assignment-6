@@ -2,15 +2,17 @@ const discussCardContainer = document.getElementById('discuss-card-container');
 let selectCategories = 'Comedy'
 
 
-
 const dataLoad = async (categoryName) => {
-    loadingSpinner(true)
-    selectCategories = categoryName
-    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`)
-    const data = await res.json()
-    const result = data.posts
-    // console.log(result);
-    displayCardUser(result)
+        loadingSpinner(true)
+    setTimeout(async () => {
+        selectCategories = categoryName
+        const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`)
+        const data = await res.json()
+        const result = data.posts
+        // console.log(result);
+        displayCardUser(result)
+    }, 2000)
+
 }
 
 const displayCardUser = (result) => {
@@ -19,10 +21,10 @@ const displayCardUser = (result) => {
     discussCardContainer.innerHTML = ''
     result.forEach(item => {
         let active = ''
-        if(item.isActive){
+        if (item.isActive) {
             active = `<div id="active" class="bg-green-400 w-3 h-3 rounded-2xl absolute top-0 right-0"></div>`
         }
-        else{
+        else {
             active = `<div id="active" class="bg-orange-700 w-3 h-3 rounded-2xl absolute top-0 right-0"></div>`
         }
         const newCard = document.createElement('div');
@@ -68,11 +70,11 @@ const displayCardUser = (result) => {
 
 // Views Show Box
 let count = 0;
-const detailsViews = (item,views) =>{
+const detailsViews = (item, views) => {
     // console.log(item,views)
     count++
     document.getElementById('post-count').innerText = count
-   
+
     const viewsShowContainer = document.getElementById('view-show-container');
     const div = document.createElement('div');
     div.classList = `my-5 shadow-lg rounded-2xl`
@@ -89,37 +91,37 @@ const detailsViews = (item,views) =>{
 }
 
 
-const latestDataLoad = async() =>{
+const latestDataLoad = async () => {
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/latest-posts`)
     const data = await res.json()
     // console.log(data)
     latestPostData(data)
 }
 
-const latestPostData = (result) =>{
-    result.forEach(item =>{
+const latestPostData = (result) => {
+    result.forEach(item => {
         // console.log(item);
 
         let latestData = '';
-        if(item.author.posted_date){
+        if (item.author.posted_date) {
             latestData = `${item.author.posted_date}`
         }
-        else{
-            latestData =`No publish date`
+        else {
+            latestData = `No publish date`
         }
         let description = '';
-        if(item.author.designation){
+        if (item.author.designation) {
             description = `${item.author.designation}`
         }
-        else{
-            description =`Unknown`
+        else {
+            description = `Unknown`
         }
         const latestCardContainer = document.getElementById('latest-card-container');
         const cardNew = document.createElement('div');
         cardNew.classList = `card card-compact lg:w-96 bg-base-100 shadow-xl`
         cardNew.innerHTML = `
         <figure>
-        <img src="${item.profile_image}" alt="Shoes" />
+        <img class="w-20" src="${item.profile_image}" alt="Shoes" />
         </figure>
             <div class="card-body">
                         <p>
@@ -144,25 +146,29 @@ const latestPostData = (result) =>{
 }
 
 
-const searchHandler = () =>{
+const searchHandler = () => {
     const value = document.getElementById('input-field').value;
-    if(value){
+    if (value) {
         loadingSpinner(true)
-        dataLoad(value)
+        setTimeout(() =>{
+            dataLoad(value)
+        }, 2000)
+        
         // console.log(value);
     }
-    else{
+    else {
         alert('Please Enter Your Valid Name')
     }
 
 }
 
-const loadingSpinner = (isLoading) =>{
+
+const loadingSpinner = (isLoading) => {
     const loading = document.getElementById('loading-spinner');
-    if(isLoading){
+    if (isLoading) {
         loading.classList.remove('hidden');
     }
-    else{
+    else {
         loading.classList.add('hidden');
     }
 }
