@@ -2,7 +2,9 @@ const discussCardContainer = document.getElementById('discuss-card-container');
 let selectCategories = 'Comedy'
 
 
+
 const dataLoad = async (categoryName) => {
+    loadingSpinner(true)
     selectCategories = categoryName
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`)
     const data = await res.json()
@@ -13,6 +15,7 @@ const dataLoad = async (categoryName) => {
 
 const displayCardUser = (result) => {
     // console.log(result)
+    loadingSpinner(true)
     discussCardContainer.innerHTML = ''
     result.forEach(item => {
         const newCard = document.createElement('div');
@@ -51,6 +54,8 @@ const displayCardUser = (result) => {
         `
         discussCardContainer.appendChild(newCard);
     });
+    // hide loading spinner
+    loadingSpinner(false);
 }
 
 // Views Show Box
@@ -119,6 +124,7 @@ const latestPostData = (result) =>{
 const searchHandler = () =>{
     const value = document.getElementById('input-field').value;
     if(value){
+        loadingSpinner(true)
         dataLoad(value)
         // console.log(value);
     }
@@ -128,7 +134,15 @@ const searchHandler = () =>{
 
 }
 
-
+const loadingSpinner = (isLoading) =>{
+    const loading = document.getElementById('loading-spinner');
+    if(isLoading){
+        loading.classList.remove('hidden');
+    }
+    else{
+        loading.classList.add('hidden');
+    }
+}
 
 dataLoad(selectCategories)
 latestDataLoad()
