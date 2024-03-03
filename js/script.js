@@ -62,7 +62,7 @@ const detailsViews = (item,views) =>{
    
     const viewsShowContainer = document.getElementById('view-show-container');
     const div = document.createElement('div');
-    div.classList = `my-5`
+    div.classList = `my-5 shadow-lg rounded-2xl`
     div.innerHTML = `
     <div class="flex justify-between bg-white rounded-lg p-5">
         <h2 class="fonts-mulish font-semibold">${item}</h2>
@@ -120,10 +120,10 @@ const searchHandler = () =>{
     const value = document.getElementById('input-field').value;
     if(value){
         dataLoad(value)
-        console.log(value);
+        // console.log(value);
     }
     else{
-        alert('Please Enter Your Valid ')
+        alert('Please Enter Your Valid Name')
     }
 
 }
