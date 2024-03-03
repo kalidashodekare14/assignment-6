@@ -42,7 +42,7 @@ const displayCardUser = (result) => {
                 <h1 class="font-bold fonts-mulish text-[25px] text-[#12132D]">${item.title}</h1>
                 <p class="text-[#717181] fonts-inter border-b-2 border-dotted pb-5">${item.description}</p>
                 <div class="flex justify-between">
-                    <div class="flex items-center py-3">
+                    <div class="flex items-center py-1">
                         <h2 class="mr-4">
                             <i class="fa-regular fa-message"></i>
                             <span>${item.comment_count}</span>
@@ -56,7 +56,7 @@ const displayCardUser = (result) => {
                             <span>${item.posted_time}</span>
                         </h2>
                     </div>
-                    <button onclick="detailsViews('${item.title}', ${item.view_count})" class="btn text-white bg-[#10B981]"><i
+                    <button onclick="detailsViews('${item.title}', ${item.view_count})" class="px-3 rounded-lg text-white bg-[#10B981]"><i
                             class="fa-regular fa-envelope-open"></i></button>
                 </div>
             </div>
