@@ -107,6 +107,13 @@ const latestPostData = (result) =>{
         else{
             latestData =`No publish date`
         }
+        let description = '';
+        if(item.author.designation){
+            description = `${item.author.designation}`
+        }
+        else{
+            description =`Unknown`
+        }
         const latestCardContainer = document.getElementById('latest-card-container');
         const cardNew = document.createElement('div');
         cardNew.classList = `card card-compact lg:w-96 bg-base-100 shadow-xl`
@@ -127,7 +134,7 @@ const latestPostData = (result) =>{
                     </div>
                     <div class="space-y-1">
                         <h4 class="text-[18px] font-semibold">${item.author.name}</h4>
-                        <p class="text-[15px]">Unknown</p>
+                        <p class="text-[15px]">${description}</p>
                     </div>
                 </div>
             </div>
