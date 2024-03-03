@@ -18,11 +18,19 @@ const displayCardUser = (result) => {
     loadingSpinner(true)
     discussCardContainer.innerHTML = ''
     result.forEach(item => {
+        let active = ''
+        if(item.isActive){
+            active = `<div id="active" class="bg-green-400 w-3 h-3 rounded-2xl absolute top-0 right-0"></div>`
+        }
+        else{
+            active = `<div id="active" class="bg-orange-700 w-3 h-3 rounded-2xl absolute top-0 right-0"></div>`
+        }
         const newCard = document.createElement('div');
         newCard.innerHTML = `
         <div class="flex justify-event lg:mr-10 gap-5 border rounded-2xl p-5 mb-5 lg:w-4/5">
-            <div> 
+            <div class="relative"> 
                 <img class="w-32 rounded-2xl" src="${item.image}" alt="">
+                ${active}
             </div>
             <div class="space-y-3">
                 <div class="flex text-[15px] text-[#3F4057] font-semibold">
@@ -91,6 +99,14 @@ const latestDataLoad = async() =>{
 const latestPostData = (result) =>{
     result.forEach(item =>{
         // console.log(item);
+
+        let latestData = '';
+        if(item.author.posted_date){
+            latestData = `${item.author.posted_date}`
+        }
+        else{
+            latestData =`No publish date`
+        }
         const latestCardContainer = document.getElementById('latest-card-container');
         const cardNew = document.createElement('div');
         cardNew.classList = `card card-compact lg:w-96 bg-base-100 shadow-xl`
@@ -101,7 +117,7 @@ const latestPostData = (result) =>{
             <div class="card-body">
                         <p>
                             <i class="fa-regular fa-calendar"></i>
-                            <span class="text-[#b8b3b3]">${item.author.posted_date}</span>
+                            <span class="text-[#b8b3b3]">${latestData}</span>
                         </p>
                         <h2 class="text-[20px] font-bold fonts-mulish">${item.title}</h2>
                         <p class="fonts-inter">${item.description}</p>
