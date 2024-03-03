@@ -121,7 +121,7 @@ const latestPostData = (result) => {
         cardNew.classList = `card card-compact lg:w-96 bg-base-100 shadow-xl`
         cardNew.innerHTML = `
         <figure>
-        <img class="w-20" src="${item.profile_image}" alt="Shoes" />
+        <img  src="${item.profile_image}" alt="Shoes" />
         </figure>
             <div class="card-body">
                         <p>
