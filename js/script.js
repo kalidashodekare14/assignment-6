@@ -34,7 +34,7 @@ const displayCardUser = (result) => {
                 <img class="w-20 rounded-2xl" src="${item.image}" alt="">
                 ${active}
             </div>
-            <div class="space-y-3">
+            <div class="space-y-3 w-full">
                 <div class="flex text-[15px] text-[#3F4057] font-semibold">
                     <p class="mr-3"># <span>${item.category}</span></p>
                     <p>Author: <span>${item.author.name}</span></p>
@@ -42,7 +42,7 @@ const displayCardUser = (result) => {
                 <h1 class="font-bold fonts-mulish text-[25px] text-[#12132D]">${item.title}</h1>
                 <p class="text-[#717181] fonts-inter border-b-2 border-dotted pb-5">${item.description}</p>
                 <div class="flex justify-between">
-                    <div class="flex items-center py-1">
+                    <div class="flex  items-center py-1">
                         <h2 class="mr-4">
                             <i class="fa-regular fa-message"></i>
                             <span>${item.comment_count}</span>
@@ -56,8 +56,10 @@ const displayCardUser = (result) => {
                             <span>${item.posted_time}</span>
                         </h2>
                     </div>
-                    <button onclick="detailsViews('${item.title.replace("'", "\\'")}', ${item.view_count})" class="px-3 rounded-lg text-white bg-[#10B981]"><i
-                            class="fa-regular fa-envelope-open"></i></button>
+                    <div>
+                    <button onclick="detailsViews('${item.title.replace("'", "\\'")}', ${item.view_count})" class="px-2 rounded-full text-white bg-[#10B981]"><i
+                    class="fa-regular fa-envelope-open text-[16px]"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
