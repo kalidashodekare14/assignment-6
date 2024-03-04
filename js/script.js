@@ -31,7 +31,7 @@ const displayCardUser = (result) => {
         newCard.innerHTML = `
         <div class="flex justify-event lg:mr-10 gap-5 border rounded-2xl p-5 mb-5 lg:w-4/5">
             <div class="relative"> 
-                <img class="w-32 rounded-2xl" src="${item.image}" alt="">
+                <img class="w-20 rounded-2xl" src="${item.image}" alt="">
                 ${active}
             </div>
             <div class="space-y-3">
@@ -125,7 +125,7 @@ const latestPostData = (result) => {
         cardNew.classList = `card card-compact lg:w-96 bg-base-100 shadow-xl`
         cardNew.innerHTML = `
         <figure>
-        <img  src="${item.profile_image}" alt="Shoes" />
+        <img class="w-52" src="${item.profile_image}" alt="Shoes" />
         </figure>
             <div class="card-body">
                         <p>
