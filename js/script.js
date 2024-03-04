@@ -92,10 +92,14 @@ const detailsViews = (item, views) => {
 
 
 const latestDataLoad = async () => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/latest-posts`)
-    const data = await res.json()
-    // console.log(data)
-    latestPostData(data)
+    loadingSpinner2(true)
+    setTimeout( async()=>{
+        const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/latest-posts`)
+        const data = await res.json()
+        // console.log(data)
+        latestPostData(data)
+    }, 2000)
+   
 }
 
 const latestPostData = (result) => {
@@ -143,6 +147,7 @@ const latestPostData = (result) => {
         `
         latestCardContainer.appendChild(cardNew)
     })
+    loadingSpinner2(false)
 }
 
 
@@ -172,6 +177,19 @@ const loadingSpinner = (isLoading) => {
         loading.classList.add('hidden');
     }
 }
+
+
+const loadingSpinner2 = (isLoader) =>{
+    const loading2 = document.getElementById('loading-spinner-2')
+    if(isLoader){
+        loading2.classList.remove('hidden')
+    }
+    else{
+        loading2.classList.add('hidden');
+    }
+}
+
+
 
 dataLoad(selectCategories)
 latestDataLoad()
